@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Configuração da conexão com o banco de dados do Render
-// O process.env.DATABASE_URL vai receber a URL externa do seu banco de dados automaticamente mais tarde
+// O process.env.DATABASE_URL vai receber a URL externa do seu banco de dados automaticamente mais tarde rty
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
