@@ -20,30 +20,30 @@ app.get('/', (req, res) => {
   res.json({ mensagem: "API Auxiliar do Sistema Bancário AS400 ativa!" });
 });
 
-// 1. Rota para Listar todos os Usuários (GET /api/usuarios)
-app.get('/api/usuarios', async (req, res) => {
+// 1. Rota para Listar todos os Clientes (GET /api/clientes)
+app.get('/api/clientes', async (req, res) => {
   try {
-    const resultado = await pool.query('SELECT * FROM usuarios');
+    const resultado = await pool.query('SELECT * FROM clientes');
     res.json(resultado.rows);
   } catch (erro) {
     console.error(erro);
-    res.status(500).json({ erro: "Erro ao buscar usuários no banco de dados" });
+    res.status(500).json({ erro: "Erro ao buscar clientes no banco de dados" });
   }
 });
 
-// 2. Rota para Buscar Usuário por ID (GET /api/usuarios/:id)
-app.get('/api/usuarios/:id', async (req, res) => {
+// 2. Rota para Buscar Cliente por ID (GET /api/clientes/:id)
+app.get('/api/clientes/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const resultado = await pool.query('SELECT * FROM usuarios WHERE id = $1', [id]);
+    const resultado = await pool.query('SELECT * FROM clientes WHERE id = $1', [id]);
 
     if (resultado.rows.length === 0) {
-      return res.status(404).json({ erro: "Usuário não encontrado" });
+      return res.status(404).json({ erro: "Cliente não encontrado" });
     }
     res.json(resultado.rows[0]);
   } catch (erro) {
     console.error(erro);
-    res.status(500).json({ erro: "Erro ao buscar usuário por ID" });
+    res.status(500).json({ erro: "Erro ao buscar cliente por ID" });
   }
 });
 
